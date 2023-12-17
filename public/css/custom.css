@@ -1,0 +1,22 @@
+body {
+  font-family: 'Montserrat Alternates';
+}
+
+nav {
+  font-family: Agbalumo;
+}
+
+.navbar-brand {
+  font-size: 40;
+}
+.nav-item {
+  font-size: 20;
+}
+.nav-link {
+  font-size: 20;
+}
+
+.ipa-str {
+  font-family: 'Nanum Gothic Coding';
+  font-stretch: ultra-expanded;
+}

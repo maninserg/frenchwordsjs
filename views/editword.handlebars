@@ -1,0 +1,74 @@
+ <div class="conteiner-flex">
+ {{> nav-bar}}
+ </div>
+ 
+<div class="container">
+<div class='row mt-5'>
+  <div class='col text-center'>
+    <h1>Edit word:
+      <span
+        class='text-decoration-underline'
+      >{{word.dataValues.word}}</span></h1>
+  </div>
+</div>
+
+<div class='row mt-5 d-flex justify-content-center'>
+  <div class='col-6 shadow-lg p-5 rounded'>
+    <form method='POST' action='/editword-process/{{word.dataValues.id}}'>
+      <div class='row mb-4'>
+        <label class='col-sm-3 col-form-label'>Word</label>
+        <div class='col-sm-9'>
+          <input
+            name='word'
+            type='text'
+            value='{{word.dataValues.word}}'
+            class='form-control'
+            id='inputWord'
+          />
+        </div>
+      </div>
+      <div class='row mb-3'>
+        <label
+          for='inputTranscription'
+          class='col-sm-3 col-form-label'
+        >Transcription</label>
+        <div class='col-sm-9'>
+          <input
+            value='{{word.dataValues.ipa_str}}'
+            name='ipa_str'
+            type='text'
+            class='form-control ipa-str'
+            id='inputTranscription'
+          />
+        </div>
+      </div>
+      <div class='row mb-3'>
+        <label for='inputPart' class='col-sm-3 col-form-label'>Part</label>
+        <div class='col-sm-9 ipa-str'>
+          <select class='form-select' aria-label='Select part' name='partId'>
+            {{#each parts}}
+              <option
+                value='{{this.dataValues.id}}'
+              >{{this.dataValues.part}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      <div class='d-flex justify-content-center'>
+        <button type='submit' class='btn btn-primary'>Save changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class='row mt-5 d-flex justify-content-center'>
+  <div class='col-6 shadow-lg p-5 rounded'>
+    <p>
+      Edit translates of word:
+      <a href='/editword/{{word.dataValues.id}}/translates'>
+        {{word.dataValues.word}}</a>
+    </p>
+  </div>
+</div>
+
+</div>

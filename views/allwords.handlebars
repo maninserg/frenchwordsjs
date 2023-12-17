@@ -1,0 +1,110 @@
+ <div class="conteiner-flex">
+ {{> nav-bar}}
+ </div>
+ 
+<div class="container">
+<div class='row mt-5'>
+  <div class='col text-center'>
+    <h1>List of all words: <u>{{words.length}}</u> </h1>
+  </div>
+</div>
+
+{{> menu hiddenworks='hidden'}}
+
+
+<div class='row mt-5 d-flex justify-content-center'>
+  <div class='col-9'>
+    <table class='table table-primary table-hover'>
+      <thead class='table-dark'>
+        <tr>
+          <th scope='col'>#</th>
+          <th scope='col'>Word</th>
+          <th scope='col'>Transcription</th>
+          <th scope='col'>Forvo</th>
+          <th scope='col'>Part</th>
+          <th scope='col'>Gen.Translate</th>
+          <th scope='col'></th>
+          <th scope='col'></th>
+        </tr>
+      </thead>
+      <tbody class='table-group-divider'>
+        {{#each words}}
+          {{#if this.dataValues.word}}
+            <tr>
+              <td>{{@index}}</td>
+              <td><a
+                  href='/allwords/{{this.dataValues.id}}'
+                >{{this.dataValues.word}}</a></td>
+              <td class='ipa-str'>[{{this.dataValues.ipa_str}}]</td>
+              <td><a href='{{this.dataValues.forvo_link}}' target='blank'><svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='20'
+                    height='20'
+                    fill='currentColor'
+                    class='bi bi-volume-up'
+                    viewBox='0 0 16 16'
+                  >
+                    <path
+                      d='M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z'
+                    />
+                    <path
+                      d='M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89z'
+                    />
+                    <path
+                      d='M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8M7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11'
+                    />
+                  </svg></a></td>
+              <td>
+                {{this.dataValues.part.dataValues.part}}
+              </td>
+              <td>
+                {{#each this.dataValues.translates}}
+                  {{#if @first}}
+                    {{this.dataValues.translate}}
+                  {{/if}}
+                {{/each}}
+              </td>
+
+              <td>
+                <a href='/editword/{{this.dataValues.id}}' class='link-success'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='20'
+                    height='20'
+                    fill='currentColor'
+                    class='bi bi-pencil-square'
+                    viewBox='0 0 16 16'
+                  >
+                    <path
+                      d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'
+                    />
+                    <path
+                      fill-rule='evenodd'
+                      d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z'
+                    />
+                  </svg>
+                </a>
+              </td>
+              <td><a
+                  href='/deleteword/{{this.dataValues.id}}'
+                  class='link-danger'
+                ><svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='20'
+                    height='20'
+                    fill='currentColor'
+                    class='bi bi-trash3'
+                    viewBox='0 0 16 16'
+                  >
+                    <path
+                      d='M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5'
+                    />
+                  </svg></a></td>
+            </tr>
+          {{/if}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

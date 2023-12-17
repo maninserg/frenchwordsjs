@@ -1,0 +1,76 @@
+ <div class="conteiner-flex">
+ {{> nav-bar}}
+ </div>
+ 
+<div class="container">
+<div class='row mt-5'>
+  <div class='col text-center'>
+    <h1>Add new word</h1>
+  </div>
+</div>
+<div class='row mt-5 d-flex justify-content-center'>
+  <div class='col-lg-6 col-sm-9 shadow-lg p-5 rounded'>
+    <form method='POST' action='/addword-process'>
+      <div class='row mb-4'>
+        <label class='col-sm-3 col-form-label'>Word</label>
+        <div class='col-sm-9'>
+          <input required name='word' type='text' class='form-control' id='inputWord' />
+        </div>
+      </div>
+      <div class='row mb-3'>
+        <label
+          for='inputTranscription'
+          class='col-sm-3 col-form-label'
+        >Transcription</label>
+        <div class='col-sm-9 ipa-str'>
+          <input
+            name='ipa_str'
+            type='text'
+            class='form-control'
+            id='inputTranscription'
+          />
+        </div>
+      </div>
+      <div class='row mb-3'>
+        <label for='inputPart' class='col-sm-3 col-form-label'>Part</label>
+        <div class='col-sm-9'>
+          <select class='form-select' aria-label='Select part' name='partId'>
+            {{#each parts}}
+              <option
+                value='{{this.dataValues.id}}'
+              >{{this.dataValues.part}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+
+      <div class='row mb-5'>
+        <label
+          for='inputTranslate'
+          class='col-sm-3 col-form-label'
+        >Gen.Translate</label>
+        <div class='col-sm-9'>
+          <select
+            class='form-select'
+            aria-label='Select part'
+            name='translateId'
+          >
+            {{#each translates}}
+              {{#if this.dataValues.translate}}
+                <option
+                  value='{{this.dataValues.id}}'
+                >{{this.dataValues.translate}}</option>
+              {{/if}}
+            {{/each}}
+          </select>
+        </div>
+      </div>
+
+      <div class='d-flex justify-content-center'>
+        <button type='submit' class='btn btn-primary'>Add new word</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</div>
